@@ -19,7 +19,9 @@ Abra `http://localhost:8000` no seu computador. Também funciona abrindo `index.
 - `js/script.js`: array `destinations`, preços, imagens, categorias e detalhes.
 - `assets/favicon.svg`: símbolo da marca.
 
-Fotos externas do Unsplash e fontes do Google Fonts requerem conexão. Cada imagem tem fallback local; fotos fora do hero usam lazy loading. Confira a disponibilidade e os termos do Unsplash antes de reutilizar comercialmente; substitua por fotografias próprias ou licenciadas para um cliente real. Não há alegação de parceria com destinos ou fornecedores.
+Imagens locais em `assets/images/`, geradas por IA para este projeto e inspiradas nos destinos, sem pretensão documental. São ilustrações: não representam hotéis, serviços ou paisagens com fidelidade garantida. WebP em duas resoluções e lazy loading fora do hero reduzem transferências. O site não depende de serviços externos para carregar suas imagens.
+
+Manrope e DM Sans são fontes do catálogo Google Fonts, hospedadas localmente em WOFF2 via Fontsource (versão 5.3.0), com licenças OFL incluídas em `assets/fonts/`. O visual também funciona sem conexão externa. Não há alegação de parceria com destinos ou fornecedores.
 
 ## WhatsApp
 
@@ -34,3 +36,9 @@ Importe este repositório na Vercel, selecione **Other**, deixe o comando de bui
 Teste os layouts em 375, 390, 768 e 1440 pixels; busca com acentos, filtros, favoritos após reload, modal por teclado, menu mobile, slider, geração de mensagem e datas passadas. O WhatsApp só deve aparecer após configurar um contato autorizado. A cópia automática exige contexto seguro (HTTPS ou localhost) e permissão do navegador; existe seleção manual como alternativa.
 
 O slider pausa em abas ocultas e com movimento reduzido. Modal usa `<dialog>` nativo, com foco e Escape; menu mobile contém o foco e fecha com Escape. Navegação, FAQ e campos possuem controles acessíveis.
+
+## Direção visual e assets
+
+Sete imagens distintas: Santorini, Fernando de Noronha, Alpes, costa italiana, Maldivas, Paris e natureza. O hero usa variantes com composição ampla; cards utilizam versões de 800 pixels. `assets/image-fallback.svg` é a alternativa gráfica local para falhas de carregamento. As imagens originais PNG geradas não fazem parte do deploy; os WebP preparados estão versionados.
+
+O slider possui pausa manual, além de respeitar movimento reduzido e visibilidade da aba. O enquadramento das imagens, o contraste do hero e a composição editorial das experiências se adaptam ao viewport.

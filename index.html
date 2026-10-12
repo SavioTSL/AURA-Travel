@@ -1,24 +1,601 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#102B3F">
-<title>AURA Travel — Viagens que viram histórias</title><meta name="description" content="Um novo olhar sobre viajar. Explore destinos extraordinários e crie seu roteiro com a AURA Travel. Website demonstrativo de turismo.">
-<meta property="og:title" content="AURA Travel — Viagens que viram histórias"><meta property="og:description" content="Destinos extraordinários. Experiências com significado. Conheça este projeto demonstrativo de turismo."><meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:image" content="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=1200&auto=format&fit=crop&q=80">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><script src="js/script.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">Pular para o conteúdo</a>
-<svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol><symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol><symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol><symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol><symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></symbol></svg>
-<header id="header"><a class="brand" href="#inicio" aria-label="AURA Travel início"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30"/></svg><span>AURA<small>TRAVEL</small></span></a><nav id="navigation" aria-label="Navegação principal"><a href="#destinos">Destinos</a><a href="#experiencias">Experiências</a><a href="#sobre">Sobre a AURA</a><a href="#contato" class="nav-contact">Planeje sua viagem <span>↗</span></a></nav><div class="header-actions"><button id="favorites-view" aria-label="Mostrar destinos favoritos" aria-pressed="false"><svg class="icon"><use href="#heart"/></svg><span id="favorite-count">0</span></button><button id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button></div></header>
-<main id="main">
-<section class="hero" id="inicio" aria-label="Destinos em destaque"><div class="hero-slides"><img class="hero-slide active" src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=2000&auto=format&fit=crop&q=85" alt="Casas brancas e mar azul em Santorini" fetchpriority="high"><img class="hero-slide" src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=2000&auto=format&fit=crop&q=85" alt="Ilha tropical e águas cristalinas nas Maldivas"><img class="hero-slide" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=2000&auto=format&fit=crop&q=85" alt="Torre Eiffel e paisagem de Paris"></div><div class="hero-shade"></div><div class="hero-content"><p class="eyebrow light"><span></span> O MUNDO ESPERA POR VOCÊ</p><h1>Vá além dos lugares.<br>Viva <em>histórias.</em></h1><p>Destinos que surpreendem. Experiências que conectam.<br class="desktop"> Uma viagem com a sua essência, do começo ao fim.</p><div class="hero-ctas"><a class="button turquoise" href="#destinos">Explorar destinos <svg class="icon"><use href="#arrow"/></svg></a><a class="text-link" href="#sobre">Conheça a AURA <span>↗</span></a></div></div><div class="hero-bottom"><div class="slide-place"><svg class="icon"><use href="#pin"/></svg><span id="slide-location">Santorini, Grécia</span><small>UM NOVO PONTO DE VISTA</small></div><div class="slider-controls"><span id="slide-index">01</span><span class="slider-line"></span><span class="slide-total">03</span><button id="slide-prev" aria-label="Imagem anterior"><svg class="icon reverse"><use href="#arrow"/></svg></button><button id="slide-next" aria-label="Próxima imagem"><svg class="icon"><use href="#arrow"/></svg></button></div></div><a class="scroll-cue" href="#destinos" aria-label="Ir para destinos">EXPLORE <span>↓</span></a></section>
-<section class="destinations section" id="destinos"><div class="section-heading reveal"><div><p class="eyebrow">SEU PRÓXIMO CAPÍTULO</p><h2>Qual é o seu<br><em>próximo destino?</em></h2></div><p>Há um mundo inteiro para descobrir.<br>Encontre o lugar que combina com você.</p></div><form id="search-form" class="search-form"><label><span>PARA ONDE VOCÊ QUER IR?</span><div><svg class="icon"><use href="#pin"/></svg><input id="destination-search" type="search" placeholder="Destino, país ou inspiração"></div></label><label><span>SEU ESTILO DE VIAGEM</span><select id="travel-style"><option value="all">Todas as experiências</option value="praias">Praias & descanso</option value="aventura">Aventura</option><option value="cultura">Cultura</option><option value="romance">Romance</option></select></label><button class="button navy" type="submit"><svg class="icon"><use href="#search"/></svg> Encontrar minha viagem</button></form><div class="filter-bar"><div class="filters" aria-label="Filtrar destinos"><button class="selected" data-filter="all" aria-pressed="true">Todos os destinos</button><button data-filter="praias" aria-pressed="false">Praias</button><button data-filter="aventura" aria-pressed="false">Aventura</button><button data-filter="cultura" aria-pressed="false">Cultura</button><button data-filter="romance" aria-pressed="false">Romance</button></div><span id="result-count" aria-live="polite"></span></div><div class="destination-grid" id="destination-grid"></div><div id="empty-results" hidden><svg class="icon"><use href="#search"/></svg><h3>Novos horizontes estão por perto.</h3><p>Nenhum destino encontrado. Experimente outra busca ou remova os filtros.</p><button class="button navy" id="reset-filters">Ver todos os destinos</button></div><p class="demo-note">Uma coleção para inspirar. Valores e roteiros ilustrativos, sem oferta comercial ou reserva real.</p></section>
-<section class="experiences section" id="experiencias"><div class="section-heading reveal"><div><p class="eyebrow">NÃO É SÓ SOBRE O DESTINO</p><h2>É sobre o que<br><em>você sente.</em></h2></div><p>Troque a rotina por novas perspectivas.<br>Escolha a experiência que desperta você.</p></div><div class="experience-grid"><a class="experience-card reveal" href="#destinos" data-experience="praias"><img loading="lazy" src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=900&auto=format&fit=crop&q=80" alt="Floresta verde com animais na natureza"><div><span>01 / RECONECTE-SE</span><h3>Natureza</h3><p>Respire fundo. Deixe o mundo desacelerar.</p><svg class="icon"><use href="#arrow"/></svg></div></a><a class="experience-card reveal" href="#destinos" data-experience="cultura"><img loading="lazy" src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=900&auto=format&fit=crop&q=80" alt="Arquitetura histórica de Roma"><div><span>02 / DESCUBRA</span><h3>Cultura</h3><p>Outros olhares. Histórias que ficam.</p><svg class="icon"><use href="#arrow"/></svg></div></a><a class="experience-card reveal" href="#destinos" data-experience="aventura"><img loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&auto=format&fit=crop&q=80" alt="Montanhas imponentes para uma aventura ao ar livre"><div><span>03 / SINTA-SE VIVO</span><h3>Aventura</h3><p>O extraordinário começa fora da rotina.</p><svg class="icon"><use href="#arrow"/></svg></div></a></div></section>
-<section class="about section" id="sobre"><div class="about-image reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1100&auto=format&fit=crop&q=85" alt="Lago alpino cercado por montanhas e vilarejo"><div class="image-caption">Menos pressa.<br><em>Mais presença.</em></div></div><div class="about-copy reveal"><p class="eyebrow">PRAZER, SOMOS A AURA</p><h2>Viajar é descobrir<br>o mundo.<br><em>E um pouco de si.</em></h2><p>Acreditamos nas viagens que continuam com você muito depois da volta. No café em uma rua desconhecida, no mergulho sem pressa, na paisagem que faz tudo ganhar outra perspectiva.</p><p>A AURA Travel é uma marca fictícia que traduz essa ideia: roteiros com intenção, escolhas cuidadosas e espaço para viver o inesperado.</p><div class="about-values"><div><svg class="icon"><use href="#sun"/></svg><span>Experiências com significado</span></div><div><svg class="icon"><use href="#pin"/></svg><span>Roteiros com a sua essência</span></div><div><svg class="icon"><use href="#heart"/></svg><span>Cuidado em cada detalhe</span></div></div><a class="text-link dark" href="#contato">Vamos imaginar sua próxima história <span>↗</span></a></div></section>
-<section class="testimonials section"><div class="section-heading reveal"><div><p class="eyebrow">HISTÓRIAS QUE INSPIRAM</p><h2>Memórias para<br><em>levar na bagagem.</em></h2></div><p>Relatos fictícios, criados para demonstrar<br>a experiência visual deste projeto.</p></div><div class="testimonial-grid"><article class="quote reveal"><span class="quote-mark">“</span><blockquote>Tem lugares que a gente visita. E tem lugares que ficam na gente. Essa viagem foi exatamente assim.</blockquote><div><span class="avatar">MC</span><p>Marina C.<small>Uma história em Santorini</small></p></div><span class="fiction">DEPOIMENTO FICTÍCIO</span></article><article class="quote reveal"><span class="quote-mark">“</span><blockquote>Desligar do mundo e acordar com aquele azul foi a pausa que eu precisava. Voltaria mil vezes.</blockquote><div><span class="avatar">RL</span><p>Rafael L.<small>Uma pausa nas Maldivas</small></p></div><span class="fiction">DEPOIMENTO FICTÍCIO</span></article><article class="quote reveal"><span class="quote-mark">“</span><blockquote>Entre montanhas, trilhas e novas descobertas, encontrei um jeito completamente novo de viajar.</blockquote><div><span class="avatar">BA</span><p>Beatriz A.<small>Uma aventura nos Alpes</small></p></div><span class="fiction">DEPOIMENTO FICTÍCIO</span></article></div></section>
-<section class="faq section" id="perguntas"><div class="faq-title reveal"><p class="eyebrow">ANTES DE FAZER AS MALAS</p><h2>Boas perguntas.<br><em>Novos caminhos.</em></h2><p>Alguns detalhes para você começar<br>a planejar com tranquilidade.</p><a class="text-link dark" href="#contato">Planeje sua viagem <span>↗</span></a></div><div class="faq-list"><details><summary>Como funciona a solicitação de orçamento?</summary><p>Preencha suas preferências para gerar uma mensagem. Você pode copiá-la; o envio por WhatsApp estará disponível somente quando um contato autorizado for configurado. Este site é demonstrativo e não envia solicitações automaticamente.</p></details><details><summary>Posso personalizar meu roteiro?</summary><p>A proposta da AURA é inspirar viagens personalizadas. Use o campo de observações para descrever interesses, ritmo de viagem e necessidades. Os roteiros apresentados são exemplos fictícios.</p></details><details><summary>Os valores apresentados são reais?</summary><p>Não. Todos os preços são ilustrativos e servem apenas à demonstração do projeto. Não representam uma oferta, disponibilidade ou cotação comercial.</p></details><details><summary>Minha solicitação confirma uma reserva?</summary><p>Não. Nenhuma reserva, pagamento ou contratação é feita neste site. A mensagem gerada é somente um rascunho para planejamento.</p></details><details><summary>Meus dados ficam armazenados?</summary><p>Os dados do formulário permanecem apenas nesta página e não são salvos pelo site. Somente os identificadores dos destinos favoritos são armazenados no navegador. Ao usar um serviço externo, valem também suas políticas.</p></details></div></section>
-<section class="contact section" id="contato"><div class="contact-copy reveal"><p class="eyebrow light">TODA HISTÓRIA TEM UM COMEÇO</p><h2>A sua próxima<br>viagem começa<br><em>aqui.</em></h2><p>Conte o que você tem em mente.<br>Vamos dar forma ao seu próximo capítulo.</p><div class="contact-note"><svg class="icon"><use href="#sun"/></svg><p>Seu ritmo. Seus interesses.<br>Um mundo de possibilidades.</p></div><small>PROJETO DEMONSTRATIVO · SEM RESERVAS REAIS</small></div><form id="quote-form" class="quote-form"><div class="field"><label for="name">Seu nome</label><input id="name" name="name" autocomplete="name" placeholder="Como podemos chamar você?" required minlength="2" maxlength="100"></div><div class="field"><label for="quote-destination">Destino desejado</label><select id="quote-destination" name="destination" required><option value="">Escolha seu próximo destino</option value="Ainda quero descobrir">Ainda quero descobrir</option></select></div><div class="form-row"><div class="field"><label for="date">Data prevista</label><input id="date" name="date" type="date" required></div><div class="field"><label for="travelers">Número de viajantes</label><input id="travelers" name="travelers" type="number" min="1" max="50" step="1" value="2" required></div></div><div class="field"><label for="notes">O que tornaria sua viagem especial? <span>(opcional)</span></label><textarea id="notes" name="notes" rows="3" maxlength="1500" placeholder="Seus interesses, ocasiões especiais, preferências..."></textarea></div><button class="button turquoise" type="submit">Preparar minha solicitação <svg class="icon"><use href="#arrow"/></svg></button><p class="form-disclaimer">Você verá uma mensagem para copiar. Nenhum dado é enviado ou salvo pelo site.</p><div id="quote-result" hidden><h3>Sua mensagem está pronta</h3><p>Este é um rascunho. Nenhuma solicitação foi enviada.</p><textarea id="quote-message" readonly aria-label="Mensagem de orçamento gerada" rows="8"></textarea><button id="copy-message" class="button navy" type="button">Copiar mensagem</button><a id="whatsapp-link" class="button turquoise" hidden target="_blank" rel="noopener noreferrer">Continuar no WhatsApp</a><p id="copy-status" role="status"></p></div></form></section>
-</main>
-<footer><div class="footer-top"><div><a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30"/></svg><span>AURA<small>TRAVEL</small></span></a><p>Viagens que viram histórias.</p></div><div><h3>Explore</h3><a href="#destinos">Destinos</a><a href="#experiencias">Experiências</a><a href="#sobre">Sobre a AURA</a></div><div><h3>Vamos conversar</h3><a href="#contato">Planeje sua viagem ↗</a><a href="#perguntas">Perguntas frequentes</a><button id="footer-favorites">Meus favoritos</button></div><div class="footer-message">O mundo é grande.<br><em>Sua próxima história também.</em></div></div><div class="footer-bottom"><span>© <span id="year"></span> AURA Travel · Projeto demonstrativo de portfólio.</span><span>Destinos, preços e depoimentos ilustrativos.</span></div></footer>
-<dialog id="destination-modal" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Fechar detalhes"><svg class="icon"><use href="#close"/></svg></button><div id="modal-content"></div></dialog><div id="toast" role="status" aria-live="polite"></div>
-</body></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#102B3F" />
+    <title>AURA Travel — Viagens que viram histórias</title>
+    <meta
+      name="description"
+      content="Um novo olhar sobre viajar. Explore destinos extraordinários e crie seu roteiro com a AURA Travel. Website demonstrativo de turismo."
+    />
+    <meta
+      property="og:title"
+      content="AURA Travel — Viagens que viram histórias"
+    />
+    <meta
+      property="og:description"
+      content="Destinos extraordinários. Experiências com significado. Conheça este projeto demonstrativo de turismo."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content="assets/images/santorini.webp" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/santorini.webp"
+      imagesrcset="assets/images/santorini-800.webp 800w, assets/images/santorini.webp 1672w"
+      imagesizes="100vw"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Pular para o conteúdo</a>
+    <svg
+      class="svg-library"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M4 12h15m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path
+          d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
+        />
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 5 5" />
+      </symbol>
+      <symbol id="close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M6 18 18 6" />
+      </symbol>
+      <symbol id="sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path
+          d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"
+        />
+      </symbol>
+    </svg>
+    <header id="header">
+      <a class="brand" href="#inicio" aria-label="AURA Travel início"
+        ><svg viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30" /></svg
+        ><span>AURA<small>TRAVEL</small></span></a
+      >
+      <nav id="navigation" aria-label="Navegação principal">
+        <a href="#destinos">Destinos</a><a href="#experiencias">Experiências</a
+        ><a href="#sobre">Sobre a AURA</a
+        ><a href="#contato" class="nav-contact"
+          >Planeje sua viagem
+          <span
+            ><svg class="icon diagonal" aria-hidden="true">
+              <use href="#arrow" /></svg></span
+        ></a>
+      </nav>
+      <div class="header-actions">
+        <button
+          id="favorites-view"
+          aria-label="Mostrar destinos favoritos"
+          aria-pressed="false"
+        >
+          <svg class="icon"><use href="#heart" /></svg
+          ><span id="favorite-count">0</span></button
+        ><button
+          id="menu-toggle"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" id="inicio" aria-label="Destinos em destaque">
+        <div class="hero-slides">
+          <img
+            class="hero-slide active"
+            src="assets/images/santorini.webp"
+            alt="Ilustração: casas brancas e mar azul em Santorini"
+            fetchpriority="high"
+            srcset="
+              assets/images/santorini-800.webp  800w,
+              assets/images/santorini.webp     1672w
+            "
+            sizes="100vw"
+          /><img
+            class="hero-slide"
+            src="assets/images/maldivas.webp"
+            alt="Ilustração: ilha tropical e águas cristalinas nas Maldivas"
+          /><img
+            class="hero-slide"
+            src="assets/images/paris.webp"
+            alt="Ilustração: torre eiffel e paisagem de Paris"
+          />
+        </div>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow light"><span></span> O MUNDO ESPERA POR VOCÊ</p>
+          <h1>Vá além dos lugares.<br />Viva <em>histórias.</em></h1>
+          <p>
+            Destinos que surpreendem. Experiências que conectam.<br
+              class="desktop"
+            />
+            Uma viagem com a sua essência, do começo ao fim.
+          </p>
+          <div class="hero-ctas">
+            <a class="button turquoise" href="#destinos"
+              >Explorar destinos
+              <svg class="icon"><use href="#arrow" /></svg></a
+            ><a class="text-link" href="#sobre"
+              >Conheça a AURA
+              <span
+                ><svg class="icon diagonal" aria-hidden="true">
+                  <use href="#arrow" /></svg></span
+            ></a>
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <div class="slide-place">
+            <svg class="icon"><use href="#pin" /></svg
+            ><span id="slide-location">Santorini, Grécia</span
+            ><small>UM NOVO PONTO DE VISTA</small>
+          </div>
+          <div class="slider-controls">
+            <span id="slide-index">01</span><span class="slider-line"></span
+            ><span class="slide-total">03</span
+            ><button
+              id="slide-pause"
+              aria-label="Pausar apresentação automática"
+              aria-pressed="false"
+            >
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 5v14M15 5v14" />
+              </svg></button
+            ><button id="slide-prev" aria-label="Imagem anterior">
+              <svg class="icon reverse"><use href="#arrow" /></svg></button
+            ><button id="slide-next" aria-label="Próxima imagem">
+              <svg class="icon"><use href="#arrow" /></svg>
+            </button>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#destinos" aria-label="Ir para destinos"
+          >EXPLORE <span>↓</span></a
+        >
+      </section>
+      <div class="travel-manifesto">
+        <span>VIAJAR COM INTENÇÃO</span>
+        <p>Um novo lugar. <em>Uma nova perspectiva.</em></p>
+        <span>VOLTAR COM HISTÓRIAS</span>
+      </div>
+      <section class="destinations section" id="destinos">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">SEU PRÓXIMO CAPÍTULO</p>
+            <h2>Qual é o seu<br /><em>próximo destino?</em></h2>
+          </div>
+          <p>
+            Há um mundo inteiro para descobrir.<br />Encontre o lugar que
+            combina com você.
+          </p>
+        </div>
+        <form id="search-form" class="search-form">
+          <label
+            ><span>PARA ONDE VOCÊ QUER IR?</span>
+            <div>
+              <svg class="icon"><use href="#pin" /></svg
+              ><input
+                id="destination-search"
+                type="search"
+                placeholder="Destino, país ou inspiração"
+              /></div></label
+          ><label
+            ><span>SEU ESTILO DE VIAGEM</span
+            ><select id="travel-style">
+              <option value="all">Todas as experiências</option>
+              <option value="praias">Praias &amp; descanso</option>
+              <option value="aventura">Aventura</option>
+              <option value="cultura">Cultura</option>
+              <option value="romance">Romance</option>
+            </select></label
+          ><button class="button navy" type="submit">
+            <svg class="icon"><use href="#search" /></svg> Encontrar minha
+            viagem
+          </button>
+        </form>
+        <div class="filter-bar">
+          <div class="filters" aria-label="Filtrar destinos">
+            <button class="selected" data-filter="all" aria-pressed="true">
+              Todos os destinos</button
+            ><button data-filter="praias" aria-pressed="false">Praias</button
+            ><button data-filter="aventura" aria-pressed="false">
+              Aventura</button
+            ><button data-filter="cultura" aria-pressed="false">Cultura</button
+            ><button data-filter="romance" aria-pressed="false">Romance</button>
+          </div>
+          <span id="result-count" aria-live="polite"></span>
+        </div>
+        <div class="destination-grid" id="destination-grid"></div>
+        <div id="empty-results" hidden>
+          <svg class="icon"><use href="#search" /></svg>
+          <h3>Novos horizontes estão por perto.</h3>
+          <p>
+            Nenhum destino encontrado. Experimente outra busca ou remova os
+            filtros.
+          </p>
+          <button class="button navy" id="reset-filters">
+            Ver todos os destinos
+          </button>
+        </div>
+        <p class="demo-note">
+          Uma coleção para inspirar. Imagens geradas por IA; valores e roteiros
+          ilustrativos, sem reserva real.
+        </p>
+      </section>
+      <section class="experiences section" id="experiencias">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">NÃO É SÓ SOBRE O DESTINO</p>
+            <h2>É sobre o que<br /><em>você sente.</em></h2>
+          </div>
+          <p>
+            Troque a rotina por novas perspectivas.<br />Escolha a experiência
+            que desperta você.
+          </p>
+        </div>
+        <div class="experience-grid">
+          <a
+            class="experience-card reveal"
+            href="#destinos"
+            data-experience="praias"
+            ><img
+              loading="lazy"
+              src="assets/images/natureza.webp"
+              alt="Ilustração de cachoeira e rio em uma floresta tropical" />
+            <div>
+              <span>01 / RECONECTE-SE</span>
+              <h3>Natureza</h3>
+              <p>Respire fundo. Deixe o mundo desacelerar.</p>
+              <svg class="icon"><use href="#arrow" /></svg></div></a
+          ><a
+            class="experience-card reveal"
+            href="#destinos"
+            data-experience="cultura"
+            ><img
+              loading="lazy"
+              src="assets/images/italia.webp"
+              alt="Ilustração de uma vila colorida na costa italiana" />
+            <div>
+              <span>02 / DESCUBRA</span>
+              <h3>Cultura</h3>
+              <p>Outros olhares. Histórias que ficam.</p>
+              <svg class="icon"><use href="#arrow" /></svg></div></a
+          ><a
+            class="experience-card reveal"
+            href="#destinos"
+            data-experience="aventura"
+            ><img
+              loading="lazy"
+              src="assets/images/alpes.webp"
+              alt="Ilustração: montanhas imponentes para uma aventura ao ar livre" />
+            <div>
+              <span>03 / SINTA-SE VIVO</span>
+              <h3>Aventura</h3>
+              <p>O extraordinário começa fora da rotina.</p>
+              <svg class="icon"><use href="#arrow" /></svg></div
+          ></a>
+        </div>
+      </section>
+      <section class="about section" id="sobre">
+        <div class="about-image reveal">
+          <img
+            loading="lazy"
+            src="assets/images/alpes.webp"
+            alt="Ilustração de lago alpino com montanhas e um chalé"
+          />
+          <div class="image-caption">
+            Menos pressa.<br /><em>Mais presença.</em>
+          </div>
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">PRAZER, SOMOS A AURA</p>
+          <h2>
+            Viajar é descobrir<br />o mundo.<br /><em>E um pouco de si.</em>
+          </h2>
+          <p>
+            Acreditamos nas viagens que continuam com você muito depois da
+            volta. No café em uma rua desconhecida, no mergulho sem pressa, na
+            paisagem que faz tudo ganhar outra perspectiva.
+          </p>
+          <p>
+            A AURA Travel é uma marca fictícia que traduz essa ideia: roteiros
+            com intenção, escolhas cuidadosas e espaço para viver o inesperado.
+          </p>
+          <div class="about-values">
+            <div>
+              <svg class="icon"><use href="#sun" /></svg
+              ><span>Experiências com significado</span>
+            </div>
+            <div>
+              <svg class="icon"><use href="#pin" /></svg
+              ><span>Roteiros com a sua essência</span>
+            </div>
+            <div>
+              <svg class="icon"><use href="#heart" /></svg
+              ><span>Cuidado em cada detalhe</span>
+            </div>
+          </div>
+          <a class="text-link dark" href="#contato"
+            >Vamos imaginar sua próxima história
+            <span
+              ><svg class="icon diagonal" aria-hidden="true">
+                <use href="#arrow" /></svg></span
+          ></a>
+        </div>
+      </section>
+      <section class="testimonials section">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">HISTÓRIAS QUE INSPIRAM</p>
+            <h2>Memórias para<br /><em>levar na bagagem.</em></h2>
+          </div>
+          <p>
+            Relatos fictícios, criados para demonstrar<br />a experiência visual
+            deste projeto.
+          </p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="quote reveal">
+            <span class="quote-mark">“</span>
+            <blockquote>
+              Tem lugares que a gente visita. E tem lugares que ficam na gente.
+              Essa viagem foi exatamente assim.
+            </blockquote>
+            <div>
+              <span class="avatar">MC</span>
+              <p>Marina C.<small>Uma história em Santorini</small></p>
+            </div>
+            <span class="fiction">DEPOIMENTO FICTÍCIO</span>
+          </article>
+          <article class="quote reveal">
+            <span class="quote-mark">“</span>
+            <blockquote>
+              Desligar do mundo e acordar com aquele azul foi a pausa que eu
+              precisava. Voltaria mil vezes.
+            </blockquote>
+            <div>
+              <span class="avatar">RL</span>
+              <p>Rafael L.<small>Uma pausa nas Maldivas</small></p>
+            </div>
+            <span class="fiction">DEPOIMENTO FICTÍCIO</span>
+          </article>
+          <article class="quote reveal">
+            <span class="quote-mark">“</span>
+            <blockquote>
+              Entre montanhas, trilhas e novas descobertas, encontrei um jeito
+              completamente novo de viajar.
+            </blockquote>
+            <div>
+              <span class="avatar">BA</span>
+              <p>Beatriz A.<small>Uma aventura nos Alpes</small></p>
+            </div>
+            <span class="fiction">DEPOIMENTO FICTÍCIO</span>
+          </article>
+        </div>
+      </section>
+      <section class="faq section" id="perguntas">
+        <div class="faq-title reveal">
+          <p class="eyebrow">ANTES DE FAZER AS MALAS</p>
+          <h2>Boas perguntas.<br /><em>Novos caminhos.</em></h2>
+          <p>
+            Alguns detalhes para você começar<br />a planejar com tranquilidade.
+          </p>
+          <a class="text-link dark" href="#contato"
+            >Planeje sua viagem
+            <span
+              ><svg class="icon diagonal" aria-hidden="true">
+                <use href="#arrow" /></svg></span
+          ></a>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Como funciona a solicitação de orçamento?</summary>
+            <p>
+              Preencha suas preferências para gerar uma mensagem. Você pode
+              copiá-la; o envio por WhatsApp estará disponível somente quando um
+              contato autorizado for configurado. Este site é demonstrativo e
+              não envia solicitações automaticamente.
+            </p>
+          </details>
+          <details>
+            <summary>Posso personalizar meu roteiro?</summary>
+            <p>
+              A proposta da AURA é inspirar viagens personalizadas. Use o campo
+              de observações para descrever interesses, ritmo de viagem e
+              necessidades. Os roteiros apresentados são exemplos fictícios.
+            </p>
+          </details>
+          <details>
+            <summary>Os valores apresentados são reais?</summary>
+            <p>
+              Não. Todos os preços são ilustrativos e servem apenas à
+              demonstração do projeto. Não representam uma oferta,
+              disponibilidade ou cotação comercial.
+            </p>
+          </details>
+          <details>
+            <summary>Minha solicitação confirma uma reserva?</summary>
+            <p>
+              Não. Nenhuma reserva, pagamento ou contratação é feita neste site.
+              A mensagem gerada é somente um rascunho para planejamento.
+            </p>
+          </details>
+          <details>
+            <summary>Meus dados ficam armazenados?</summary>
+            <p>
+              Os dados do formulário permanecem apenas nesta página e não são
+              salvos pelo site. Somente os identificadores dos destinos
+              favoritos são armazenados no navegador. Ao usar um serviço
+              externo, valem também suas políticas.
+            </p>
+          </details>
+        </div>
+      </section>
+      <section class="contact section" id="contato">
+        <div class="contact-copy reveal">
+          <p class="eyebrow light">TODA HISTÓRIA TEM UM COMEÇO</p>
+          <h2>A sua próxima<br />viagem começa<br /><em>aqui.</em></h2>
+          <p>
+            Conte o que você tem em mente.<br />Vamos dar forma ao seu próximo
+            capítulo.
+          </p>
+          <div class="contact-note">
+            <svg class="icon"><use href="#sun" /></svg>
+            <p>Seu ritmo. Seus interesses.<br />Um mundo de possibilidades.</p>
+          </div>
+          <small>PROJETO DEMONSTRATIVO · SEM RESERVAS REAIS</small>
+        </div>
+        <form id="quote-form" class="quote-form">
+          <div class="field">
+            <label for="name">Seu nome</label
+            ><input
+              id="name"
+              name="name"
+              autocomplete="name"
+              placeholder="Como podemos chamar você?"
+              required
+              minlength="2"
+              maxlength="100"
+            />
+          </div>
+          <div class="field">
+            <label for="quote-destination">Destino desejado</label
+            ><select id="quote-destination" name="destination" required>
+              <option value="">Escolha seu próximo destino</option>
+              <option value="Ainda quero descobrir">
+                Ainda quero descobrir
+              </option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="date">Data prevista</label
+              ><input id="date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="travelers">Número de viajantes</label
+              ><input
+                id="travelers"
+                name="travelers"
+                type="number"
+                min="1"
+                max="50"
+                step="1"
+                value="2"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="notes"
+              >O que tornaria sua viagem especial?
+              <span>(opcional)</span></label
+            ><textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              maxlength="1500"
+              placeholder="Seus interesses, ocasiões especiais, preferências..."
+            ></textarea>
+          </div>
+          <button class="button turquoise" type="submit">
+            Preparar minha solicitação
+            <svg class="icon"><use href="#arrow" /></svg>
+          </button>
+          <p class="form-disclaimer">
+            Você verá uma mensagem para copiar. Nenhum dado é enviado ou salvo
+            pelo site.
+          </p>
+          <div id="quote-result" hidden>
+            <h3>Sua mensagem está pronta</h3>
+            <p>Este é um rascunho. Nenhuma solicitação foi enviada.</p>
+            <textarea
+              id="quote-message"
+              readonly
+              aria-label="Mensagem de orçamento gerada"
+              rows="8"
+            ></textarea
+            ><button id="copy-message" class="button navy" type="button">
+              Copiar mensagem</button
+            ><a
+              id="whatsapp-link"
+              class="button turquoise"
+              hidden
+              target="_blank"
+              rel="noopener noreferrer"
+              >Continuar no WhatsApp</a
+            >
+            <p id="copy-status" role="status"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#inicio"
+            ><svg viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30" /></svg
+            ><span>AURA<small>TRAVEL</small></span></a
+          >
+          <p>Viagens que viram histórias.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <a href="#destinos">Destinos</a
+          ><a href="#experiencias">Experiências</a
+          ><a href="#sobre">Sobre a AURA</a>
+        </div>
+        <div>
+          <h3>Vamos conversar</h3>
+          <a href="#contato"
+            >Planeje sua viagem
+            <svg class="icon diagonal" aria-hidden="true">
+              <use href="#arrow" /></svg></a
+          ><a href="#perguntas">Perguntas frequentes</a
+          ><button id="footer-favorites">Meus favoritos</button>
+        </div>
+        <div class="footer-message">
+          O mundo é grande.<br /><em>Sua próxima história também.</em>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span
+          >© <span id="year"></span> AURA Travel · Projeto demonstrativo de
+          portfólio.</span
+        ><span
+          >Imagens geradas por IA · Destinos, preços e depoimentos
+          ilustrativos.</span
+        >
+      </div>
+    </footer>
+    <dialog id="destination-modal" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Fechar detalhes">
+        <svg class="icon"><use href="#close" /></svg>
+      </button>
+      <div id="modal-content"></div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
