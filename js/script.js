@@ -121,6 +121,7 @@ try {
   /* Storage may be unavailable; favorites still work in memory. */
 }
 let activeFilter = "all",
+  activeQuery = "",
   favoritesOnly = false,
   toastTimer;
 function toast(message) {
@@ -143,6 +144,7 @@ function fallbackImages(root = document) {
       "error",
       () => {
         img.classList.add("image-failed");
+        img.removeAttribute("srcset");
         img.src = "assets/image-fallback.svg";
       },
       { once: true },
@@ -150,7 +152,7 @@ function fallbackImages(root = document) {
   });
 }
 function renderDestinations() {
-  const query = normalize($("#destination-search").value);
+  const query = normalize(activeQuery);
   const filtered = destinations.filter(
     (d) =>
       (activeFilter === "all" || d.category === activeFilter) &&
@@ -174,7 +176,80 @@ function renderDestinations() {
     button.setAttribute("aria-pressed", String(selected));
   });
   updateFavoriteCount();
+  updateCatalogContext();
   fallbackImages($("#destination-grid"));
+}
+function updateCatalogContext() {
+  $("#catalog-title").textContent = favoritesOnly
+    ? "Seus destinos favoritos"
+    : "Sua próxima descoberta";
+  $("#catalog-hint").textContent = favoritesOnly
+    ? "Você está vendo apenas os destinos que salvou neste navegador."
+    : "Explore a coleção completa ou guarde seus destinos favoritos.";
+  $("#catalog-favorites").setAttribute("aria-pressed", String(favoritesOnly));
+  $("#catalog-favorites span").textContent = favoritesOnly
+    ? "Ver coleção completa"
+    : `Ver favoritos (${favorites.size})`;
+  const container = $("#active-filters");
+  container.replaceChildren();
+  const chips = [];
+  if (activeQuery)
+    chips.push({
+      label: `Busca: ${activeQuery}`,
+      remove: () => {
+        activeQuery = "";
+        $("#destination-search").value = "";
+      },
+    });
+  if (activeFilter !== "all")
+    chips.push({
+      label: `Estilo: ${categories[activeFilter]}`,
+      remove: () => {
+        activeFilter = "all";
+        $("#travel-style").value = "all";
+      },
+    });
+  if (favoritesOnly)
+    chips.push({
+      label: "Somente favoritos",
+      remove: () => {
+        favoritesOnly = false;
+      },
+    });
+  for (const chip of chips) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "filter-chip";
+    button.setAttribute("aria-label", `Remover filtro ${chip.label}`);
+    const label = document.createElement("span");
+    label.textContent = chip.label;
+    button.append(label);
+    button.insertAdjacentHTML("beforeend", icon("close"));
+    button.addEventListener("click", () => {
+      chip.remove();
+      renderDestinations();
+      $("#catalog-favorites").focus({ preventScroll: true });
+    });
+    container.append(button);
+  }
+  if (chips.length) {
+    const clear = document.createElement("button");
+    clear.type = "button";
+    clear.className = "clear-filters";
+    clear.textContent = "Limpar filtros";
+    clear.addEventListener("click", () => {
+      resetFilters();
+      $("#catalog-favorites").focus({ preventScroll: true });
+    });
+    container.append(clear);
+  }
+  container.hidden = !chips.length;
+}
+function resetFilters() {
+  favoritesOnly = false;
+  activeQuery = "";
+  $("#destination-search").value = "";
+  setFilter("all");
 }
 function setFilter(filter) {
   activeFilter = filter;
@@ -183,6 +258,7 @@ function setFilter(filter) {
 }
 $("#search-form").addEventListener("submit", (event) => {
   event.preventDefault();
+  activeQuery = $("#destination-search").value.trim();
   setFilter($("#travel-style").value);
 });
 document
@@ -190,33 +266,30 @@ document
   .forEach((button) =>
     button.addEventListener("click", () => setFilter(button.dataset.filter)),
   );
-$("#reset-filters").addEventListener("click", () => {
-  favoritesOnly = false;
-  $("#destination-search").value = "";
-  setFilter("all");
-});
+$("#reset-filters").addEventListener("click", resetFilters);
 function showFavorites() {
   favoritesOnly = !favoritesOnly;
-  $("#destination-search").value = "";
-  setFilter("all");
+  renderDestinations();
   closeMenu();
   $("#destinos").scrollIntoView({
     behavior: reducedMotion.matches ? "auto" : "smooth",
   });
 }
 $("#favorites-view").addEventListener("click", showFavorites);
+$("#catalog-favorites").addEventListener("click", showFavorites);
 $("#footer-favorites").addEventListener("click", () => {
-  favoritesOnly = false;
+  resetFilters();
   showFavorites();
 });
 document.querySelectorAll("[data-experience]").forEach((link) =>
   link.addEventListener("click", () => {
     favoritesOnly = false;
+    activeQuery = "";
     $("#destination-search").value = "";
     setFilter(link.dataset.experience);
   }),
 );
-let modalTrigger;
+let modalTrigger, modalFocusTarget;
 const modal = $("#destination-modal");
 $("#destination-grid").addEventListener("click", (event) => {
   const favoriteButton = event.target.closest("[data-favorite]");
@@ -240,6 +313,7 @@ $("#destination-grid").addEventListener("click", (event) => {
         `${favorites.has(id) ? "Remover" : "Adicionar"} ${destinations.find((d) => d.id === id).name} ${favorites.has(id) ? "dos" : "aos"} favoritos`,
       );
       updateFavoriteCount();
+      updateCatalogContext();
     }
     toast(
       `${favorites.has(id) ? "Destino adicionado aos" : "Destino removido dos"} favoritos.${persisted ? "" : " Armazenamento indisponível neste navegador."}`,
@@ -250,6 +324,7 @@ $("#destination-grid").addEventListener("click", (event) => {
   if (!detailsButton) return;
   const d = destinations.find((d) => d.id === detailsButton.dataset.details);
   modalTrigger = detailsButton;
+  modalFocusTarget = null;
   $("#modal-content").innerHTML =
     `<img class="modal-image" src="${imageURL(d.image, 1200)}" alt="Ilustração gerada por IA: ${d.alt}"><div class="modal-body"><p class="eyebrow">${categories[d.category]}</p><h2 id="modal-title">${d.name}</h2><p>${d.details}</p><div class="modal-meta"><div>Localização<strong>${d.location}</strong></div><div>Duração<strong>${d.duration}</strong></div><div>Valor ilustrativo<strong>${money(d.price)}</strong></div></div><button class="button turquoise" id="request-quote">Solicitar orçamento ${icon("arrow")}</button><p class="demo-note">Exemplo fictício. Sem oferta comercial ou reserva.</p></div>`;
   fallbackImages(modal);
@@ -257,6 +332,7 @@ $("#destination-grid").addEventListener("click", (event) => {
   document.body.classList.add("locked");
   $("#modal-close").focus();
   $("#request-quote").addEventListener("click", () => {
+    modalFocusTarget = $("#name");
     modal.close();
     $("#quote-destination").value = d.name;
     $("#contato").scrollIntoView({
@@ -279,7 +355,7 @@ modal.addEventListener("click", (event) => {
 });
 modal.addEventListener("close", () => {
   document.body.classList.remove("locked");
-  modalTrigger?.focus({ preventScroll: true });
+  (modalFocusTarget || modalTrigger)?.focus({ preventScroll: true });
 });
 const menuToggle = $("#menu-toggle"),
   navigation = $("#navigation");
@@ -288,6 +364,11 @@ function closeMenu() {
   menuToggle.setAttribute("aria-label", "Abrir menu");
   navigation.classList.remove("open");
   document.body.classList.remove("locked");
+  $("main").inert = false;
+  $("footer").inert = false;
+  $("#header-shell").removeAttribute("role");
+  $("#header-shell").removeAttribute("aria-modal");
+  $("#header-shell").removeAttribute("aria-label");
 }
 menuToggle.addEventListener("click", () => {
   const open = menuToggle.getAttribute("aria-expanded") !== "true";
@@ -295,12 +376,38 @@ menuToggle.addEventListener("click", () => {
   menuToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
   navigation.classList.toggle("open", open);
   document.body.classList.toggle("locked", open);
+  $("main").inert = open;
+  $("footer").inert = open;
+  if (open) {
+    $("#header-shell").setAttribute("role", "dialog");
+    $("#header-shell").setAttribute("aria-modal", "true");
+    $("#header-shell").setAttribute("aria-label", "Menu AURA Travel");
+  } else {
+    $("#header-shell").removeAttribute("role");
+    $("#header-shell").removeAttribute("aria-modal");
+    $("#header-shell").removeAttribute("aria-label");
+  }
   $("#header").classList.toggle("solid", open || window.scrollY > 40);
   if (open) navigation.querySelector("a").focus();
 });
-navigation
-  .querySelectorAll("a")
-  .forEach((a) => a.addEventListener("click", closeMenu));
+$("#header .brand").addEventListener("click", closeMenu);
+$("#header-shell").addEventListener("click", (event) => {
+  if (
+    event.target === $("#header-shell") &&
+    menuToggle.getAttribute("aria-expanded") === "true"
+  ) {
+    closeMenu();
+    menuToggle.focus();
+  }
+});
+navigation.querySelectorAll("a").forEach((a) =>
+  a.addEventListener("click", () => {
+    closeMenu();
+    const target = $(a.getAttribute("href"));
+    target?.setAttribute("tabindex", "-1");
+    target?.focus({ preventScroll: true });
+  }),
+);
 document.addEventListener("keydown", (event) => {
   if (menuToggle.getAttribute("aria-expanded") !== "true") return;
   if (event.key === "Escape") {

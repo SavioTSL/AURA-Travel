@@ -29,7 +29,7 @@
       as="image"
       href="assets/images/santorini.webp"
       imagesrcset="assets/images/santorini-800.webp 800w, assets/images/santorini.webp 1672w"
-      imagesizes="100vw"
+      imagesizes="(max-width: 649px) 1500px, 100vw"
     />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
@@ -67,40 +67,43 @@
         />
       </symbol>
     </svg>
-    <header id="header">
-      <a class="brand" href="#inicio" aria-label="AURA Travel início"
-        ><svg viewBox="0 0 40 40" aria-hidden="true">
-          <path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30" /></svg
-        ><span>AURA<small>TRAVEL</small></span></a
-      >
-      <nav id="navigation" aria-label="Navegação principal">
-        <a href="#destinos">Destinos</a><a href="#experiencias">Experiências</a
-        ><a href="#sobre">Sobre a AURA</a
-        ><a href="#contato" class="nav-contact"
-          >Planeje sua viagem
-          <span
-            ><svg class="icon diagonal" aria-hidden="true">
-              <use href="#arrow" /></svg></span
-        ></a>
-      </nav>
-      <div class="header-actions">
-        <button
-          id="favorites-view"
-          aria-label="Mostrar destinos favoritos"
-          aria-pressed="false"
+    <div id="header-shell">
+      <header id="header">
+        <a class="brand" href="#inicio" aria-label="AURA Travel início"
+          ><svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M4 30 20 5l16 25H4Zm7-7h18M20 5v30" /></svg
+          ><span>AURA<small>TRAVEL</small></span></a
         >
-          <svg class="icon"><use href="#heart" /></svg
-          ><span id="favorite-count">0</span></button
-        ><button
-          id="menu-toggle"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navigation"
-        >
-          <span></span><span></span>
-        </button>
-      </div>
-    </header>
+        <nav id="navigation" aria-label="Navegação principal">
+          <a href="#destinos">Destinos</a
+          ><a href="#experiencias">Experiências</a
+          ><a href="#sobre">Sobre a AURA</a
+          ><a href="#contato" class="nav-contact"
+            >Planeje sua viagem
+            <span
+              ><svg class="icon diagonal" aria-hidden="true">
+                <use href="#arrow" /></svg></span
+          ></a>
+        </nav>
+        <div class="header-actions">
+          <button
+            id="favorites-view"
+            aria-label="Mostrar destinos favoritos"
+            aria-pressed="false"
+          >
+            <svg class="icon"><use href="#heart" /></svg
+            ><span id="favorite-count">0</span></button
+          ><button
+            id="menu-toggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="navigation"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </header>
+    </div>
     <main id="main">
       <section class="hero" id="inicio" aria-label="Destinos em destaque">
         <div class="hero-slides">
@@ -113,7 +116,7 @@
               assets/images/santorini-800.webp  800w,
               assets/images/santorini.webp     1672w
             "
-            sizes="100vw"
+            sizes="(max-width: 649px) 1500px, 100vw"
           /><img
             class="hero-slide"
             src="assets/images/maldivas.webp"
@@ -215,7 +218,7 @@
           </button>
         </form>
         <div class="filter-bar">
-          <div class="filters" aria-label="Filtrar destinos">
+          <div class="filters" role="group" aria-label="Filtrar destinos">
             <button class="selected" data-filter="all" aria-pressed="true">
               Todos os destinos</button
             ><button data-filter="praias" aria-pressed="false">Praias</button
@@ -224,8 +227,32 @@
             ><button data-filter="cultura" aria-pressed="false">Cultura</button
             ><button data-filter="romance" aria-pressed="false">Romance</button>
           </div>
-          <span id="result-count" aria-live="polite"></span>
+          <span
+            id="result-count"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></span>
         </div>
+        <div class="catalog-context">
+          <div>
+            <h3 id="catalog-title">Sua próxima descoberta</h3>
+            <p id="catalog-hint">
+              Explore a coleção completa ou guarde seus destinos favoritos.
+            </p>
+          </div>
+          <button id="catalog-favorites" type="button" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#heart" /></svg
+            ><span>Ver favoritos</span>
+          </button>
+        </div>
+        <div
+          id="active-filters"
+          class="active-filters"
+          role="group"
+          aria-label="Filtros ativos"
+          hidden
+        ></div>
         <div class="destination-grid" id="destination-grid"></div>
         <div id="empty-results" hidden>
           <svg class="icon"><use href="#search" /></svg>
@@ -301,8 +328,15 @@
         <div class="about-image reveal">
           <img
             loading="lazy"
-            src="assets/images/alpes.webp"
-            alt="Ilustração de lago alpino com montanhas e um chalé"
+            src="assets/images/sobre.webp"
+            srcset="
+              assets/images/sobre-640.webp  640w,
+              assets/images/sobre.webp     1122w
+            "
+            sizes="(min-width: 1000px) 42vw, 90vw"
+            width="1122"
+            height="1402"
+            alt="Ilustração gerada por IA: terraço mediterrâneo com poltrona, café e vista para o mar"
           />
           <div class="image-caption">
             Menos pressa.<br /><em>Mais presença.</em>

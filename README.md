@@ -39,6 +39,14 @@ O slider pausa em abas ocultas e com movimento reduzido. Modal usa `<dialog>` na
 
 ## Direção visual e assets
 
-Sete imagens distintas: Santorini, Fernando de Noronha, Alpes, costa italiana, Maldivas, Paris e natureza. O hero usa variantes com composição ampla; cards utilizam versões de 800 pixels. `assets/image-fallback.svg` é a alternativa gráfica local para falhas de carregamento. As imagens originais PNG geradas não fazem parte do deploy; os WebP preparados estão versionados.
+Oito imagens distintas: Santorini, Fernando de Noronha, Alpes, costa italiana, Maldivas, Paris, natureza e um terraço mediterrâneo exclusivo para o Sobre. O hero usa variantes com composição ampla; cards utilizam versões de 800 pixels. `assets/image-fallback.svg` é a alternativa gráfica local para falhas de carregamento. As imagens originais PNG geradas não fazem parte do deploy; os WebP preparados estão versionados.
 
 O slider possui pausa manual, além de respeitar movimento reduzido e visibilidade da aba. O enquadramento das imagens, o contraste do hero e a composição editorial das experiências se adaptam ao viewport.
+
+## Refinamentos de usabilidade
+
+A coleção indica favoritos ativos, busca aplicada e estilo selecionado. Cada filtro pode ser removido individualmente; limpar filtros retorna ao catálogo completo. Alterar o texto da busca não altera resultados até pesquisar. Favoritos podem ser combinados com busca e estilo.
+
+O menu mobile funciona como diálogo modal: o conteúdo de fundo fica inerte, o foco circula pelos controles e Escape retorna ao botão de menu. Ao solicitar orçamento no modal de destino, o foco segue para o nome no formulário. Campos mobile usam texto de 16px para evitar o zoom automático típico do Safari iOS.
+
+A revisão automatizada de acessibilidade não substitui testes com leitores de tela ou aparelhos físicos. Consulte `VALIDATION.md` para os resultados e limitações da revisão.
